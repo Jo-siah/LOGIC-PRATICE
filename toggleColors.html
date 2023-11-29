@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Div colors</title>
+    <style>
+        body{
+
+            height: 100vh;
+            width: 100%;
+            
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        #divhold{
+            height: 50vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 2rem;
+        }
+        #divhold>section{
+            padding: 20px;
+            border-radius: 20px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            width: 30vw;
+        }
+        .btns{
+        display: flex;
+        justify-content: space-between ;
+        padding:80px;
+        width: 50%;
+        margin: auto;
+        gap: 2rem;
+        }
+
+        .btns>button{
+        padding: 20px;
+        background-color: whitesmoke;
+        width: 30vw;
+        font-size: 1rem;
+        border-radius: 10px;
+        
+        }
+
+        @media (max-width:480px){
+            .divhold{
+                width: 100%;
+                flex-direction: column;
+            }
+            .btns{
+                width: 60%;
+                justify-content: center;
+                align-items: center;
+            }
+            #divhold>section{
+                width: 27vw;
+                padding: 15px;
+            }
+        .btns>button{
+            padding:10px;
+            border:none;
+        }
+    }
+    </style>
+</head>
+<body> 
+   <div class="btns">
+    <button onclick="startToggle()">Start</button>
+    <button onclick="clearInterval(startToggle())">stop</button>
+   </div>
+    <div id="divhold">
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+        <section>Hello!!</section>
+    </div>
+
+    <script>
+        const standardColors = [
+  'AliceBlue',
+  'AntiqueWhite',
+  'Aqua',
+  'Aquamarine',
+  'Azure',
+  'Beige',
+  'Bisque',
+  'BlanchedAlmond',
+  'Blue',
+  'BlueViolet',
+  'Brown',
+  'BurlyWood',
+  'CadetBlue',
+  'Chartreuse',
+  'Chocolate',
+  'Coral',
+  'CornflowerBlue',
+  'Cornsilk',
+  'Crimson',
+  'Cyan',
+];
+
+console.log(standardColors);
+let parent = document.querySelector('#divhold');
+let numberOfElements = parent.querySelectorAll('section')
+
+const startToggle = () => {
+    setInterval(
+        function changeColors(){
+            numberOfElements.forEach((section) => {
+    let randomColorIndex = Math.floor(Math.random() * 20)
+    section.style.backgroundColor = standardColors[randomColorIndex];
+    section.innerText  = standardColors[randomColorIndex];
+})
+        } , 2000
+    )
+}
+
+    </script>
+</body>
+</html>
